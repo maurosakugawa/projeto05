@@ -1,10 +1,34 @@
+
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { render } from 'react-dom';
+import Form from './Form';
+import Tabela from './Tabela';
 
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      nome: '',
+      pessoas: [],
+      lista: []
+    };
+  }
 
-ReactDOM.render(
-    <App />,
-  document.getElementById('root')
-);
+  add = (pessoas) => {
+    console.log('App', pessoas)
+    this.setState({
+      pessoas: pessoas
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <Form add={this.add} />
+        <Tabela lista={this.state.pessoas} />
+      </div>
+    );
+  }
+}
+
+render(<App />, document.getElementById('root'));
